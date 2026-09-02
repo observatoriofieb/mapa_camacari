@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Terrenos à venda — Observatório da Indústria</title>
+<meta name="description" content="Mapas interativos de terrenos à venda em Camaçari e na Bahia — Observatório da Indústria, FIEB.">
+<link rel="icon" href="assets/logo-observatorio.png">
+<style>
+  :root{
+    --azul-fieb:#0c4390;
+    --azul-obs:#2a489a;
+    --ciano:#008bd2;
+    --tinta:#1c2530;
+    --tinta-fraca:#5c6a7a;
+    --linha:#e3e8ef;
+    --fundo:#f5f7fa;
+    --branco:#fff;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+    color:var(--tinta);
+    background:var(--fundo);
+    -webkit-font-smoothing:antialiased;
+  }
+  header{background:var(--branco);border-bottom:3px solid var(--azul-fieb)}
+  .marcas{
+    max-width:1080px;margin:0 auto;padding:20px 24px;
+    display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  }
+  .marcas img{display:block;height:56px;width:auto}
+  .marcas .fieb img{height:34px}
+  .titulo{max-width:1080px;margin:0 auto;padding:36px 24px 8px}
+  .selo{
+    display:inline-block;font-size:12px;font-weight:700;letter-spacing:.09em;
+    text-transform:uppercase;color:var(--ciano);margin-bottom:10px;
+  }
+  h1{
+    margin:0 0 12px;font-size:clamp(1.7rem,4.2vw,2.6rem);line-height:1.15;
+    color:var(--azul-fieb);letter-spacing:-.02em;
+  }
+  .subtitulo{margin:0 0 14px;max-width:62ch;color:var(--tinta-fraca);font-size:1.05rem}
+  .atualizacao{
+    display:inline-flex;align-items:center;gap:8px;
+    background:#eaf4fb;border:1px solid #c5e0f2;border-radius:999px;
+    padding:5px 14px;font-size:.85rem;color:#1a5c8a;
+  }
+  .atualizacao b{color:var(--azul-fieb);font-weight:600}
+  main{max-width:1080px;margin:0 auto;padding:28px 24px 8px}
+  .mapas{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+  .cartao{
+    display:flex;flex-direction:column;
+    background:var(--branco);border:1px solid var(--linha);border-radius:12px;
+    padding:24px;text-decoration:none;color:inherit;
+    transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+  }
+  .cartao:hover,.cartao:focus-visible{
+    transform:translateY(-3px);
+    box-shadow:0 10px 26px rgba(12,67,144,.13);
+    border-color:var(--azul-obs);outline:none;
+  }
+  .cartao h2{margin:0 0 4px;font-size:1.4rem;color:var(--azul-fieb);letter-spacing:-.01em}
+  .escopo{
+    font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+    color:var(--ciano);margin-bottom:12px;
+  }
+  .cartao p{margin:0 0 18px;color:var(--tinta-fraca);font-size:.95rem}
+  .numeros{
+    display:flex;gap:26px;flex-wrap:wrap;
+    margin:0 0 20px;padding:16px 0 0;border-top:1px solid var(--linha);
+  }
+  .numeros div{min-width:84px}
+  .numeros b{display:block;font-size:1.45rem;color:var(--azul-obs);line-height:1.15}
+  .numeros span{font-size:12px;color:var(--tinta-fraca)}
+  .abrir{
+    margin-top:auto;align-self:flex-start;
+    background:var(--azul-fieb);color:#fff;
+    padding:11px 20px;border-radius:7px;font-weight:600;font-size:.95rem;
+  }
+  .cartao:hover .abrir{background:var(--azul-obs)}
+  .recursos{max-width:1080px;margin:0 auto;padding:16px 24px 0}
+  .recursos h3{
+    font-size:.95rem;text-transform:uppercase;letter-spacing:.07em;
+    color:var(--tinta-fraca);margin:26px 0 12px;
+  }
+  .recursos ul{
+    margin:0;padding:0;list-style:none;
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:10px 26px;
+  }
+  .recursos li{position:relative;padding-left:20px;font-size:.93rem;color:var(--tinta-fraca)}
+  .recursos li::before{
+    content:"";position:absolute;left:0;top:.62em;
+    width:7px;height:7px;border-radius:50%;background:var(--ciano);
+  }
+  .recursos strong{color:var(--tinta);font-weight:600}
+  footer{
+    max-width:1080px;margin:34px auto 0;padding:22px 24px 44px;
+    border-top:1px solid var(--linha);font-size:.85rem;color:var(--tinta-fraca);
+  }
+  footer p{margin:0 0 9px;max-width:78ch}
+  .aviso{
+    background:#fff8e6;border:1px solid #f0dca8;border-left:4px solid #d99a00;
+    border-radius:7px;padding:13px 16px;margin:0 0 14px;color:#6b5200;
+  }
+  footer .assinatura{margin-top:16px;color:#8996a6;font-size:.8rem}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="marcas">
+    <a href="./"><img src="assets/logo-observatorio.png" alt="Observatório da Indústria"></a>
+    <span class="fieb"><img src="assets/logo-fieb.png" alt="FIEB"></span>
+  </div>
+</header>
+
+<div class="titulo">
+  <span class="selo">Estudos Técnicos · Prova de conceito</span>
+  <h1>Terrenos à venda</h1>
+  <p class="subtitulo">
+    Mapas interativos da oferta de terrenos anunciada nos portais imobiliários,
+    com filtros por preço, precisão da localização e recorte territorial.
+  </p>
+  <span class="atualizacao">
+    Dados coletados em <b>06/08/2026</b> &middot; atualização semanal
+  </span>
+</div>
+
+<main>
+  <div class="mapas">
+
+    <a class="cartao" href="camacari.html">
+      <div class="escopo">Recorte municipal</div>
+      <h2>Camaçari</h2>
+      <p>
+        Oferta detalhada por bairro, sobreposta ao zoneamento do
+        PDDU sancionado em 2024.
+      </p>
+      <div class="numeros">
+        <div><b>687</b><span>anúncios</span></div>
+        <div><b>43</b><span>bairros</span></div>
+        <div><b>R$ 1.000</b><span>mediana por m²</span></div>
+      </div>
+      <span class="abrir">Abrir mapa de Camaçari &rarr;</span>
+    </a>
+
+    <a class="cartao" href="bahia.html">
+      <div class="escopo">Recorte estadual</div>
+      <h2>Bahia</h2>
+      <p>
+        Os 417 municípios do estado, agrupados em camadas por região
+        metropolitana e região intermediária.
+      </p>
+      <div class="numeros">
+        <div><b>3.690</b><span>anúncios</span></div>
+        <div><b>85</b><span>municípios com oferta</span></div>
+        <div><b>R$ 915</b><span>mediana por m²</span></div>
+      </div>
+      <span class="abrir">Abrir mapa da Bahia &rarr;</span>
+    </a>
+
+  </div>
+</main>
+
+<div class="recursos">
+  <h3>O que dá para fazer nos mapas</h3>
+  <ul>
+    <li><strong>Filtrar por faixa de preço</strong> &mdash; cinco faixas, com a contagem de cada uma.</li>
+    <li><strong>Separar localização exata de aproximada</strong> &mdash; pino cheio é a coordenada do anúncio; círculo tracejado é o centro do bairro ou do município.</li>
+    <li><strong>Ligar e desligar recortes</strong> &mdash; bairros em Camaçari, regiões na Bahia, com busca por nome.</li>
+    <li><strong>Ver o zoneamento do PDDU</strong> (só em Camaçari) &mdash; macrozoneamento ou zoneamento urbanístico, com legenda.</li>
+    <li><strong>Abrir o anúncio original</strong> &mdash; cada ponto traz preço, área, R$/m², CEP e link.</li>
+  </ul>
+</div>
+
+<footer>
+  <p class="aviso">
+    <strong>Leia antes de usar os números.</strong> A área de cada terreno é
+    informada pelo próprio anunciante e traz erros grosseiros &mdash; há lotes
+    declarados com 1 m² e outros com mais de 1 km². Como a área alimenta o
+    preço por m², qualquer recorte com poucos anúncios fica contaminado.
+    Use a mediana, não a média, e confira o anúncio original antes de
+    concluir qualquer coisa.
+  </p>
+  <p>
+    <strong>Fonte:</strong> API pública de busca do grupo OLX, que alimenta
+    VivaReal, ZAP Imóveis e OLX. Coleta de agosto de 2026, feita município a
+    município. Apenas terrenos e lotes residenciais à venda.
+  </p>
+  <p>
+    <strong>Natureza do levantamento:</strong> retrato da oferta
+    <em>anunciada</em> num instante &mdash; não é cadastro imobiliário, não cobre
+    negócios fora dos portais e não representa valores de transação.
+    Destinado a pesquisa e planejamento.
+  </p>
+  <p class="assinatura">
+    Observatório da Indústria · Gerência de Estudos Técnicos · Sistema FIEB
+  </p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,7 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Mapas gerados pelo folium: continuam versionados, mas nao poluem
+# `git log -p` com diffs de megabytes a cada regeracao.
+camacari.html -diff
+bahia.html    -diff
